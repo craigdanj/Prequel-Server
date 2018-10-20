@@ -1,0 +1,20 @@
+{
+  "name": "Prequel-Server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/craigdanj/Prequel-Server.git"
+  },
+  "keywords": [],
+  "author": "Craig Johnson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/craigdanj/Prequel-Server/issues"
+  },
+  "homepage": "https://github.com/craigdanj/Prequel-Server#readme"
+}
