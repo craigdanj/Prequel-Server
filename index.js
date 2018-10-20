@@ -51,15 +51,22 @@ const posts = [
 const typeDefs = gql`
   # Comments in GraphQL are defined with the hash (#) symbol.
 
-  # This "Task" type can be used in other type declarations.
+  # These types can be used in other type declarations.
   type Task {
     name: String
     completed: Boolean
   }
 
+  type Post {
+    title: String
+    content: String
+  }
+
   # The "Query" type is the root of all GraphQL queries.
   type Query {
     tasks: [Task]
+    posts: [Post]
+
   }
 `;
 
@@ -68,6 +75,7 @@ const typeDefs = gql`
 const resolvers = {
   Query: {
     tasks: () => tasks,
+    posts: () => posts
   },
 };
 
