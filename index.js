@@ -46,6 +46,34 @@ const posts = [
     }
 ];
 
+const events = [
+    {
+        name: "Leo sed condimentum a sodales ante justo aliquam.",
+        place: "Geneva",
+        dateTime: "2018/10/01 - 22:30:00"
+    },
+    {
+        name: "Diam vulputate a condimentum scelerisque.",
+        place: "Belfast",
+        dateTime: "2018/12/03 - 09:45:00"
+    },
+    {
+        name: " Ligula eleifend cursus ullamcorper vel potenti",
+        place: "Miami",
+        dateTime: "2018/11/02 - 07:15:00"
+    },
+    {
+        name: "Imperdiet eget netus gravida a mattis proin nullam.",
+        place: "Beijing",
+        dateTime: "2018/04/09 - 13:00:00"
+    },
+    {
+        name: "Curae ad cum ut dis vitae vestibulum diam.",
+        place: "Orlando",
+        dateTime: "2018/07/11 - 15:45:00"
+    }
+];
+
 // Type definitions define the "shape" of your data and specify
 // which ways the data can be fetched from the GraphQL server.
 const typeDefs = gql`
@@ -62,10 +90,17 @@ const typeDefs = gql`
     content: String
   }
 
+  type Event {
+    name: String
+    place: String
+    dateTime: String
+  }
+
   # The "Query" type is the root of all GraphQL queries.
   type Query {
     tasks: [Task]
     posts: [Post]
+    events: [Event]
 
   }
 `;
@@ -75,7 +110,8 @@ const typeDefs = gql`
 const resolvers = {
   Query: {
     tasks: () => tasks,
-    posts: () => posts
+    posts: () => posts,
+    events: () => events
   },
 };
 
