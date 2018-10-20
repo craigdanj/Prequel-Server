@@ -2,23 +2,23 @@ const { ApolloServer, gql } = require('apollo-server');
 
 const tasks = [
     {
-        name: "test 1",
+        name: "Leo sed condimentum a sodales ante justo aliquam.",
         completed: false
     },
     {
-        name: "test 2",
+        name: "Diam vulputate a condimentum scelerisque.",
         completed: false
     },
     {
-        name: "test 3",
+        name: " Ligula eleifend cursus ullamcorper vel potenti",
         completed: false
     },
     {
-        name: "test 4",
+        name: "Imperdiet eget netus gravida a mattis proin nullam.",
         completed: false
     },
     {
-        name: "test 5",
+        name: "Curae ad cum ut dis vitae vestibulum diam.",
         completed: false
     }
 ];
