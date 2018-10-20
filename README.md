@@ -11,7 +11,7 @@ Setup:
 1. Clone repo into a folder
 2. 'cd' into folder
 3. Run 'node index.js'
-4. Now open up the server url in the browser to access the GraphQL playground. You can test your queries out in the playground before you use them in your client.
+4. Open up the server url in the browser to access the GraphQL playground. You can test your queries out in the playground before you use them in your client.
 
 The server can be queried for the following types of data:
 -----------------------------------------------------------
