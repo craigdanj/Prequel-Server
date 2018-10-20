@@ -1,5 +1,6 @@
 # Prequel-Server
 Dummy GraphQL APIs for you to test your UIs with. Built with Node JS and Apollo Server.
+(Only querying supported as of now. Will have mutations in the future hopefully.)
 
 Requirements:
 ------------------
