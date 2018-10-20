@@ -18,3 +18,9 @@ The server can be queried for the following types of data:
 1. Task list.
 2. Blog Posts.
 3. Events.
+
+
+To do:
+---------
+[ ] Setup sqlite db.
+[ ] Seed data into db using faker.
