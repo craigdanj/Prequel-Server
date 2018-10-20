@@ -22,5 +22,5 @@ The server can be queried for the following types of data:
 
 To do:
 ---------
-[ ] Setup sqlite db.
-[ ] Seed data into db using faker.
+- [ ] Setup sqlite db.
+- [ ] Seed data into db using faker.
