@@ -12,9 +12,10 @@
   },
   "keywords": [],
   "author": "Craig Johnson",
-  "license": "ISC",
+  "license": "MIT LIcense",
   "bugs": {
     "url": "https://github.com/craigdanj/Prequel-Server/issues"
   },
   "homepage": "https://github.com/craigdanj/Prequel-Server#readme"
 }
+  
