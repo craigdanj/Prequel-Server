@@ -49,3 +49,4 @@ To do:
 ---------
 - [ ] Setup sqlite db.
 - [ ] Seed data into db using faker.
+- [ ] Add mutations.
