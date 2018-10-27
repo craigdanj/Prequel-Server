@@ -1,6 +1,7 @@
 const { ApolloServer, gql } = require('apollo-server');
 const Sequelize = require('sequelize');
 const _ = require('lodash');
+const faker = require('faker');
 
 const sequelize = new Sequelize('db', null, null, {
     host: 'localhost',
@@ -17,6 +18,9 @@ sequelize
     .catch(err => {
         console.error('Unable to connect to the database:', err);
     });
+
+//Setting seed for consistent results
+faker.seed(123);
 
 
 // =========================
@@ -38,7 +42,7 @@ TaskModel.sync({force: true}).then(() => {
 
     _.times(10, () => {
         return TaskModel.create({
-            name: 'AAAAAA',
+            name: faker.random.words(),
             completed: false
         });
     })
@@ -62,8 +66,8 @@ PostModel.sync({force: true}).then(() => {
 
     _.times(10, () => {
         return PostModel.create({
-            title: 'Leo sed condimentum a sodales ante justo aliquam.',
-            content: "Lacinia eget nibh eu egestas etiam laoreet a a at vehicula cubilia nam mollis mus a ac lacinia a parturient suscipit sem molestie. Sociosqu nam a ac vivamus a dapibus faucibus duis amet sem vestibulum cursus id neque enim platea erat purus a vestibulum velit accumsan a elit. A sit rhoncus adipiscing sed a tellus feugiat commodo et duis consequat a cubilia rhoncus justo. Ligula a suspendisse ornare ut adipiscing parturient vulputate vestibulum vestibulum torquent odio pharetra a himenaeos a a suscipit primis sem a mus posuere adipiscing et. Senectus urna cum dui cum mi nulla aliquet praesent facilisis aenean commodo cum dictum ultrices conubia luctus inceptos phasellus quisque hac posuere congue magna. Posuere mauris a vel fringilla a a eu posuere dignissim eget hac inceptos odio proin a mollis sodales."
+            title: faker.lorem.sentence(),
+            content: faker.lorem.sentences()
         });
     })
 });
@@ -80,18 +84,18 @@ const EventModel = sequelize.define('events', {
     place: {
         type: Sequelize.STRING
     },
-    dateTime: {
+    date: {
         type: Sequelize.DATE, 
         defaultValue: Sequelize.NOW
     }
 });
 
 EventModel.sync({force: true}).then(() => {
-
-    _.times(10, (index) => {
+    _.times(10, () => {
         return EventModel.create({
-            name: 'Leo sed condimentum a sodales ante justo aliquam.',
-            place: index + "Geneva"
+            name: faker.random.words(),
+            place: faker.address.city(),
+            date: faker.date.future()
         });
     })
 });
@@ -118,7 +122,7 @@ const typeDefs = gql`
   type Event {
     name: String
     place: String
-    dateTime: String
+    date: String
   }
 
   # The "Query" type is the root of all GraphQL queries.
