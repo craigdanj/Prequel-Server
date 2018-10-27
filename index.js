@@ -1,27 +1,44 @@
 const { ApolloServer, gql } = require('apollo-server');
+const Sequelize = require('sequelize');
+const _ = require('lodash');
 
-const tasks = [
-    {
-        name: "Leo sed condimentum a sodales ante justo aliquam.",
-        completed: false
+const sequelize = new Sequelize('db', null, null, {
+    host: 'localhost',
+    dialect: 'sqlite',
+    storage: './db.sqlite',
+    operatorsAliases: false
+});
+
+sequelize
+    .authenticate()
+    .then(() => {
+        console.log('Connection has been established successfully.');
+    })
+    .catch(err => {
+        console.error('Unable to connect to the database:', err);
+    });
+
+const TaskModel = sequelize.define('task', {
+    name: {
+        type: Sequelize.STRING
     },
-    {
-        name: "Diam vulputate a condimentum scelerisque.",
-        completed: false
+    completed: {
+        type: Sequelize.BOOLEAN
     },
-    {
-        name: " Ligula eleifend cursus ullamcorper vel potenti",
-        completed: false
-    },
-    {
-        name: "Imperdiet eget netus gravida a mattis proin nullam.",
-        completed: false
-    },
-    {
-        name: "Curae ad cum ut dis vitae vestibulum diam.",
-        completed: false
-    }
-];
+});
+
+// force: true will drop the table if it already exists
+TaskModel.sync({force: true}).then(() => {
+    // Table created
+
+    _.times(10, () => {
+        return TaskModel.create({
+            name: 'AAAAAA',
+            completed: false
+        });
+    })
+});
+
 
 const posts = [
     {
@@ -109,7 +126,9 @@ const typeDefs = gql`
 // schema.  We'll retrieve tasks from the "tasks" array above.
 const resolvers = {
   Query: {
-    tasks: () => tasks,
+    tasks: () => {
+        return TaskModel.findAll();
+    },
     posts: () => posts,
     events: () => events
   },
