@@ -8,9 +8,9 @@ Requirements:
 
 Setup:
 -----------
-1. Clone repo into a folder
-2. 'cd' into folder
-3. Run 'npm start'.
+1. Clone the repo into a folder.
+2. `cd` into the folder.
+3. Run `npm start`.
 4. Open up the server url in the browser to access the GraphQL playground. You can test your queries out in the playground before you use them in your client.
 
 The server can be queried for the following types of data:
