@@ -19,10 +19,11 @@
   },
   "homepage": "https://github.com/craigdanj/Prequel-Server#readme",
   "dependencies": {
-    "apollo-server": "^2.1.0",
-    "graphql": "^14.0.2",
-    "lodash": "^4.17.11",
-    "sequelize": "^4.41.0",
-    "sqlite3": "^4.0.3"
+    "apollo-server": "2.1.0",
+    "faker": "4.1.0",
+    "graphql": "14.0.2",
+    "lodash": "4.17.11",
+    "sequelize": "4.41.0",
+    "sqlite3": "4.0.3"
   }
 }
