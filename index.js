@@ -20,7 +20,7 @@ sequelize
 
 
 // =========================
-// TASKS
+// TASKS MODEL
 // =========================
 
 const TaskModel = sequelize.define('tasks', {
@@ -46,7 +46,7 @@ TaskModel.sync({force: true}).then(() => {
 
 
 // =========================
-// POSTS
+// POSTS MODEL
 // =========================
 
 const PostModel = sequelize.define('posts', {
@@ -58,9 +58,7 @@ const PostModel = sequelize.define('posts', {
     }
 });
 
-// force: true will drop the table if it already exists
 PostModel.sync({force: true}).then(() => {
-    // Table created
 
     _.times(10, () => {
         return PostModel.create({
@@ -72,7 +70,7 @@ PostModel.sync({force: true}).then(() => {
 
 
 // =========================
-// EVENTS
+// EVENTS MODEL
 // =========================
 
 const EventModel = sequelize.define('events', {
@@ -88,9 +86,7 @@ const EventModel = sequelize.define('events', {
     }
 });
 
-// force: true will drop the table if it already exists
 EventModel.sync({force: true}).then(() => {
-    // Table created
 
     _.times(10, (index) => {
         return EventModel.create({
@@ -101,8 +97,10 @@ EventModel.sync({force: true}).then(() => {
 });
 
 
+//-------------------------------------------------------------
 // Type definitions define the "shape" of your data and specify
 // which ways the data can be fetched from the GraphQL server.
+
 const typeDefs = gql`
   # Comments in GraphQL are defined with the hash (#) symbol.
 
@@ -132,8 +130,10 @@ const typeDefs = gql`
   }
 `;
 
+//-------------------------------------------------------------
 // Resolvers define the technique for fetching the types in the
-// schema.  We'll retrieve tasks from the "tasks" array above.
+// schema.
+
 const resolvers = {
   Query: {
     tasks: () =>  TaskModel.findAll(),
@@ -142,6 +142,7 @@ const resolvers = {
   },
 };
 
+//-------------------------------------------------------------
 // In the most basic sense, the ApolloServer can be started
 // by passing type definitions (typeDefs) and the resolvers
 // responsible for fetching the data for those types.
