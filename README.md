@@ -49,6 +49,7 @@ query {
 
 To do:
 ---------
+- [ ] Add ids to queries.
 - [ ] Query single by id.
 - [ ] Query with pagination.
 - [ ] Add mutations to update data.
