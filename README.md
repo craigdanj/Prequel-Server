@@ -16,15 +16,31 @@ Setup:
 The server can be queried for the following types of data:
 -----------------------------------------------------------
 1. Task list.
+```graphql
+query {
+  tasks{
+    name
+    completed
+  }
+}
+```
 2. Blog Posts.
+```graphql
+query {
+  posts{
+    title
+    content
+  }
+}
+```
 3. Events.
 ```graphql
 query {
-    events{
-        name
-        dateTime
-        place
-    }
+  events{
+    name
+    dateTime
+    place
+  }
 }
 ```
 
