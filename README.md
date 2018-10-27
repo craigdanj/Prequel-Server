@@ -38,7 +38,7 @@ query {
 query {
   events{
     name
-    dateTime
+    date
     place
   }
 }
