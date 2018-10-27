@@ -18,6 +18,15 @@ The server can be queried for the following types of data:
 1. Task list.
 2. Blog Posts.
 3. Events.
+```graphql
+query {
+    events{
+        name
+        dateTime
+        place
+    }
+}
+```
 
 
 To do:
