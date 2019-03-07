@@ -106,32 +106,37 @@ EventModel.sync({force: true}).then(() => {
 // which ways the data can be fetched from the GraphQL server.
 
 const typeDefs = gql`
-  # Comments in GraphQL are defined with the hash (#) symbol.
+    # Comments in GraphQL are defined with the hash (#) symbol.
 
-  # These types can be used in other type declarations.
-  type Task {
-    name: String
-    completed: Boolean
-  }
+    # These types can be used in other type declarations.
+    type Task {
+        name: String
+        completed: Boolean
+    }
 
-  type Post {
-    title: String
-    content: String
-  }
+    type Post {
+        title: String
+        content: String
+    }
 
-  type Event {
-    name: String
-    place: String
-    date: String
-  }
+    type Event {
+        name: String
+        place: String
+        date: String
+    }
 
-  # The "Query" type is the root of all GraphQL queries.
-  type Query {
-    tasks: [Task]
-    posts: [Post]
-    events: [Event]
+    # The "Query" type is the root of all GraphQL queries.
+    type Query {
+        tasks: [Task]
+        posts: [Post]
+        events: [Event]
+    }
 
-  }
+    type Mutation {
+        addTask: [Task]
+        removeTask: [Task]
+        toggleTask: [Task]
+    }
 `;
 
 //-------------------------------------------------------------
@@ -139,11 +144,16 @@ const typeDefs = gql`
 // schema.
 
 const resolvers = {
-  Query: {
-    tasks: () =>  TaskModel.findAll(),
-    posts: () => PostModel.findAll(),
-    events: () => EventModel.findAll()
-  },
+    Query: {
+        tasks: () =>  TaskModel.findAll(),
+        posts: () => PostModel.findAll(),
+        events: () => EventModel.findAll()
+    },
+    Mutation: {
+        addTask(root ,args, context, info) {
+            return null;
+        }
+    }
 };
 
 //-------------------------------------------------------------
@@ -155,5 +165,5 @@ const server = new ApolloServer({ typeDefs, resolvers });
 
 // This `listen` method launches a web-server.
 server.listen().then(({ url }) => {
-  console.log(`🚀  Server ready at ${url}`);
+    console.log(`🚀  Server ready at ${url}`);
 });
