@@ -35,14 +35,11 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-      - persist_to_workspace:
-          root: workspace
   lint:
     executor: node-executor
     working_directory: ~/repo
+
     steps:
-      - attach_workspace:
-          at: workspace
       - run: npm run lint
 
 workflows:
