@@ -44,7 +44,7 @@ jobs:
   lint:
     executor: node-executor
     working_directory: ~/repo
-    - attach_workspace:
+      - attach_workspace:
         at: my_workspace
     steps:
       - run: npm run lint
