@@ -36,18 +36,20 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      - persist_to_workspace:
-          root: .
-          paths:
-            - node_modules
-
-  lint:
-    executor: node-executor
-    working_directory: ~/repo
-    steps:
-      - attach_workspace:
-          at: ~/repo
       - run: npm run lint
+      # - persist_to_workspace:
+      #     root: .
+      #     paths:
+      #       - node_modules
+
+  # workspace gets applied but lint still fails.
+  # lint:
+  #   executor: node-executor
+  #   working_directory: ~/repo
+  #   steps:
+  #     - attach_workspace:
+  #         at: ~/repo
+  #     - run: npm run lint
 
 workflows:
   version: 2
