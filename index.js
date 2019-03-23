@@ -4,20 +4,20 @@ const _ = require('lodash');
 const faker = require('faker');
 
 const sequelize = new Sequelize('db', null, null, {
-    host: 'localhost',
-    dialect: 'sqlite',
-    storage: './db.sqlite',
-    operatorsAliases: false
+	host: 'localhost',
+	dialect: 'sqlite',
+	storage: './db.sqlite',
+	operatorsAliases: false
 });
 
 sequelize
-    .authenticate()
-    .then(() => {
-        console.log('Connection has been established successfully.\n');
-    })
-    .catch(err => {
-        console.error('Unable to connect to the database:', err);
-    });
+	.authenticate()
+	.then(() => {
+		console.log('Connection has been established successfully.\n');
+	})
+	.catch(err => {
+		console.error('Unable to connect to the database:', err);
+	});
 
 //Setting seed for consistent results
 faker.seed(123);
@@ -28,24 +28,24 @@ faker.seed(123);
 // =========================
 
 const TaskModel = sequelize.define('tasks', {
-    name: {
-        type: Sequelize.STRING
-    },
-    completed: {
-        type: Sequelize.BOOLEAN
-    }
+	name: {
+		type: Sequelize.STRING
+	},
+	completed: {
+		type: Sequelize.BOOLEAN
+	}
 });
 
 // force: true will drop the table if it already exists
 TaskModel.sync({force: true}).then(() => {
-    // Table created
+	// Table created
 
-    _.times(10, () => {
-        return TaskModel.create({
-            name: faker.random.words(),
-            completed: false
-        });
-    })
+	_.times(10, () => {
+		return TaskModel.create({
+			name: faker.random.words(),
+			completed: false
+		});
+	});
 });
 
 
@@ -54,22 +54,22 @@ TaskModel.sync({force: true}).then(() => {
 // =========================
 
 const PostModel = sequelize.define('posts', {
-    title: {
-        type: Sequelize.STRING
-    },
-    content: {
-        type: Sequelize.STRING
-    }
+	title: {
+		type: Sequelize.STRING
+	},
+	content: {
+		type: Sequelize.STRING
+	}
 });
 
 PostModel.sync({force: true}).then(() => {
 
-    _.times(10, () => {
-        return PostModel.create({
-            title: faker.lorem.sentence(),
-            content: faker.lorem.sentences()
-        });
-    })
+	_.times(10, () => {
+		return PostModel.create({
+			title: faker.lorem.sentence(),
+			content: faker.lorem.sentences()
+		});
+	});
 });
 
 
@@ -78,26 +78,26 @@ PostModel.sync({force: true}).then(() => {
 // =========================
 
 const EventModel = sequelize.define('events', {
-    name: {
-        type: Sequelize.STRING
-    },
-    place: {
-        type: Sequelize.STRING
-    },
-    date: {
-        type: Sequelize.DATE, 
-        defaultValue: Sequelize.NOW
-    }
+	name: {
+		type: Sequelize.STRING
+	},
+	place: {
+		type: Sequelize.STRING
+	},
+	date: {
+		type: Sequelize.DATE, 
+		defaultValue: Sequelize.NOW
+	}
 });
 
 EventModel.sync({force: true}).then(() => {
-    _.times(10, () => {
-        return EventModel.create({
-            name: faker.random.words(),
-            place: faker.address.city(),
-            date: faker.date.future()
-        });
-    })
+	_.times(10, () => {
+		return EventModel.create({
+			name: faker.random.words(),
+			place: faker.address.city(),
+			date: faker.date.future()
+		});
+	});
 });
 
 
@@ -106,37 +106,37 @@ EventModel.sync({force: true}).then(() => {
 // which ways the data can be fetched from the GraphQL server.
 
 const typeDefs = gql`
-    # Comments in GraphQL are defined with the hash (#) symbol.
+	# Comments in GraphQL are defined with the hash (#) symbol.
 
-    # These types can be used in other type declarations.
-    type Task {
-        name: String
-        completed: Boolean
-    }
+	# These types can be used in other type declarations.
+	type Task {
+		name: String
+		completed: Boolean
+	}
 
-    type Post {
-        title: String
-        content: String
-    }
+	type Post {
+		title: String
+		content: String
+	}
 
-    type Event {
-        name: String
-        place: String
-        date: String
-    }
+	type Event {
+		name: String
+		place: String
+		date: String
+	}
 
-    # The "Query" type is the root of all GraphQL queries.
-    type Query {
-        tasks: [Task]
-        posts: [Post]
-        events: [Event]
-    }
+	# The "Query" type is the root of all GraphQL queries.
+	type Query {
+		tasks: [Task]
+		posts: [Post]
+		events: [Event]
+	}
 
-    type Mutation {
-        addTask: [Task]
-        removeTask: [Task]
-        toggleTask: [Task]
-    }
+	type Mutation {
+		addTask: [Task]
+		removeTask: [Task]
+		toggleTask: [Task]
+	}
 `;
 
 //-------------------------------------------------------------
@@ -144,16 +144,16 @@ const typeDefs = gql`
 // schema.
 
 const resolvers = {
-    Query: {
-        tasks: () =>  TaskModel.findAll(),
-        posts: () => PostModel.findAll(),
-        events: () => EventModel.findAll()
-    },
-    Mutation: {
-        addTask(root ,args, context, info) {
-            return null;
-        }
-    }
+	Query: {
+		tasks: () =>  TaskModel.findAll(),
+		posts: () => PostModel.findAll(),
+		events: () => EventModel.findAll()
+	},
+	Mutation: {
+		addTask(root ,args, context, info) {
+			return null;
+		}
+	}
 };
 
 //-------------------------------------------------------------
@@ -165,5 +165,5 @@ const server = new ApolloServer({ typeDefs, resolvers });
 
 // This `listen` method launches a web-server.
 server.listen().then(({ url }) => {
-    console.log(`🚀  Server ready at ${url}`);
+	console.log(`🚀  Server ready at ${url}`);
 });
